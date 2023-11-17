@@ -33,6 +33,16 @@ python src/main.py
 
 The script will authenticate your Telegram account, listen to the specified channels, and log incoming messages into newline-delimited JSON files in the designated data directory.
 
+## Docker
+
+To setup session files, you can use the following command
+
+```bash
+docker run --env-file .env -e EG_SESSION_ID=/app/sessions/anon -v ./sessions:/app/sessions -i ghcr.io/remiallain/echogram:latest
+```
+
+Then start the service with the sessions volume mounted and with same `EG_SESSION_ID`
+
 ## Notes
 
 - The script logs messages for the specified channels only.
