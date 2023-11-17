@@ -2,12 +2,14 @@ version: '3.7'
 services:
   echogram:
     image: ghcr.io/remiallain/echogram:latest
-    env_file: .env
     environment:
       PYTHONUNBUFFERED: 1
       LOG_LEVEL: info
       EG_DATA_DIR: /app/data
-      EG_SESSION_ID: ${SESSION_ID}
+      EG_SESSION_ID: /app/sessions/anon
+      EG_API_ID: 
+      EG_API_HASH: 
+      EG_CHANNELS: channel1,channel2,channel3
     volumes:
-      - ./${SESSION_ID}.session:/app/${SESSION_ID}.session
+      - ./sessions:/app/sessions
       - ./data:/app/data
