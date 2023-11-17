@@ -5,9 +5,9 @@ services:
     env_file: .env
     environment:
       PYTHONUNBUFFERED: 1
-      LOGLEVEL: info
-      TG_DATA_DIR: /app/data
-      TG_SESSION_ID: ${SESSION_ID}
+      LOG_LEVEL: info
+      EG_DATA_DIR: /app/data
+      EG_SESSION_ID: ${SESSION_ID}
     volumes:
       - ./${SESSION_ID}.session:/app/${SESSION_ID}.session
       - ./data:/app/data

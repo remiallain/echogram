@@ -13,12 +13,12 @@ Effortless **Telegram channels monitoring** - Archiving messages from Telegram c
 2. Create a `.env` file in the project directory with the following variables:
 
    ```dotenv
-   TG_API_ID=your_telegram_api_id
-   TG_API_HASH=your_telegram_api_hash
-   TG_DATA_DIR=/path/to/data/directory
-   TG_CHANNELS=channel_username1,channel_username2,channel_username3
-   TG_SESSION_ID=your_session_id
-   LOGLEVEL=INFO
+   EG_API_ID=your_telegram_api_id
+   EG_API_HASH=your_telegram_api_hash
+   EG_DATA_DIR=/path/to/data/directory
+   EG_CHANNELS=channel_username1,channel_username2,channel_username3
+   EG_SESSION_ID=your_session_id
+   LOG_LEVEL=INFO
    ```
 
    Ensure you replace the placeholders with your actual values.

@@ -8,16 +8,16 @@ import sys
 
 logging.basicConfig(
     stream=sys.stdout,
-    level=os.environ.get('LOGLEVEL', 'INFO').upper(),
+    level=os.environ.get('LOG_LEVEL', 'INFO').upper(),
     format='%(asctime)s [%(levelname)s] %(message)s',
 )
 
 load_dotenv()  # take environment variables from .env.
 
-api_id = os.environ.get('TG_API_ID')
-api_hash = os.environ.get('TG_API_HASH')
-directory = os.environ.get('TG_DATA_DIR', '/tmp/tg_data')
-channel_ids = os.environ.get('TG_CHANNELS', '').split(',')
+api_id = os.environ.get('EG_API_ID')
+api_hash = os.environ.get('EG_API_HASH')
+directory = os.environ.get('EG_DATA_DIR', '/tmp/tg_data')
+channel_ids = os.environ.get('EG_CHANNELS', '').split(',')
 channels = {}
 
 if not os.path.exists(directory):
@@ -25,10 +25,10 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 if not (api_id and api_hash):
-    logging.error("Please set TG_API_ID, TG_API_HASH")
+    logging.error("Please set EG_API_ID, EG_API_HASH")
     exit(1)
 
-client = TelegramClient(os.environ.get('TG_SESSION_ID', 'default'), api_id, api_hash)
+client = TelegramClient(os.environ.get('EG_SESSION_ID', 'default'), api_id, api_hash)
 
 async def init():
 
