@@ -1,4 +1,5 @@
 from telethon import TelegramClient, events
+from telethon.tl.functions.channels import JoinChannelRequest
 from dotenv import load_dotenv
 import os
 import datetime
@@ -40,9 +41,26 @@ async def init():
             channels[dialog.entity.id] = dialog.entity
             logging.info("Listening to channel %s", dialog.entity.username)
     
+    # auto-join channels
+    leftover_channels = [c for c in channel_ids if c not in [c.username for c in channels.values()]]
+    if int(os.environ.get('EG_AUTO_JOIN_CHANNELS', 0)) == 1 and len(leftover_channels) > 0:
+        logging.info("Auto-joining channels")
+        for channel_id in leftover_channels:
+            logging.info("Searching channel %s", channel_id)
+            try:
+                new_channel = await client.get_entity('@%s' % channel_id)
+                logging.info("Joining channel %s", new_channel.username)
+                await client(JoinChannelRequest(channel_id))
+                channels[new_channel.id] = new_channel
+                logging.info("Listening to channel %s", new_channel.username)
+            except Exception as e:
+                logging.error("Error joining channel %s", channel_id)
+                logging.error(e)
+
     if len(channels.keys()) < 1:
-        logging.error("Please set at least one channel in TG_CHANNELS")
+        logging.error("Please set at least one valid channel in TG_CHANNELS")
         exit(1)
+
 
 def main():
     with client:

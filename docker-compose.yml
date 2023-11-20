@@ -10,6 +10,7 @@ services:
       EG_API_ID: 
       EG_API_HASH: 
       EG_CHANNELS: channel1,channel2,channel3
+      EG_AUTO_JOIN_CHANNELS: 1
     volumes:
       - ./sessions:/app/sessions
       - ./data:/app/data

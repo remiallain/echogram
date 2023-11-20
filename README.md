@@ -18,6 +18,7 @@ Effortless **Telegram channels monitoring** - Archiving messages from Telegram c
    EG_DATA_DIR=/path/to/data/directory
    EG_CHANNELS=channel_username1,channel_username2,channel_username3
    EG_SESSION_ID=your_session_id
+   EG_AUTO_JOIN_CHANNELS=1
    LOG_LEVEL=INFO
    ```
 
